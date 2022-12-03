@@ -19,7 +19,7 @@ Produkt = '10/20'
 #Produkt = '160/220'
 
 if (Produkt  == '10/20'):
-    df=pd.read_csv('10_20.csv', sep=';')
+    df=pd.read_csv('data/10_20.csv', sep=';')
     learning_rate=0.01
     a=np.array([80, 0.45, 0.55, 0, 0, 0, 14])
 elif (Produkt == '70/100'):

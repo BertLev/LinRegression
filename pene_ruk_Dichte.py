@@ -4,15 +4,19 @@ Created on Sun Sep 25 19:59:00 2022
 
 @author: Bert
 """
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.metrics import mean_absolute_error, r2_score
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '1'
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+from tensorflow import keras
 from keras.layers import Dense
 from keras.models import Sequential
-from tensorflow import keras
 
 #AbhVar  = "Pene"
 AbhVar  = "RuK "
@@ -22,7 +26,7 @@ Produkt = '10/20'
 #Produkt = 'ALL'
 
 if (Produkt  == '10/20'):
-    df=pd.read_csv('10_20_Dichte.csv', sep=';')
+    df=pd.read_csv('data/10_20_Dichte.csv', sep=';')
     learning_rate=0.0001
     if (AbhVar == "Pene") :
         a=np.array([80, 0.45, 0.55, 0, 0, 0, 1080, 69])
@@ -156,7 +160,7 @@ autoencoder.add(Dense(len(a),input_dim=len(a),activation='linear'))
 autoencoder.add(Dense(1,activation='linear'))
 opt = keras.optimizers.Adam(learning_rate=learning_rate)
 autoencoder.compile(loss='mean_squared_error', optimizer=opt)
-loss_history = autoencoder.fit(X_train, y_train, epochs=5000, verbose=False,validation_data=(X_test, y_test))
+loss_history = autoencoder.fit(X_train, y_train, epochs=500, verbose=False,validation_data=(X_test, y_test))
 
 lh = loss_history.history['loss']
 plt.plot(lh[50:])
