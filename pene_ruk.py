@@ -17,6 +17,8 @@ from tensorflow import keras
 Produkt = '10/20'
 #Produkt = '70/100'
 #Produkt = '160/220'
+import os
+print (os.getcwd())
 
 if (Produkt  == '10/20'):
     df=pd.read_csv('data/10_20.csv', sep=';')
