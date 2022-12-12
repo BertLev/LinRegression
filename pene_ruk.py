@@ -99,8 +99,8 @@ pca_data1 = pca.fit_transform(X)
 loadings = pca.components_.T
 print('explained variance :',pca.explained_variance_ratio_,pca.explained_variance_ratio_.sum())
 
-from pca import pca
-pca_data = pca(X, dimension=dim) 
+#from pca import pca
+#pca_data = pca(X, dimension=dim) 
 
 X_cov = np.cov(X.T)
 #print(X_cor)
